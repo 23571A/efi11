@@ -8,17 +8,17 @@ new = False
 pathm = getuser()
 OS = system()
 if OS == 'Windows':
-	paths = 'C:\\Users\\'
-	pathe = '\\Efi-11\\save.json'
-	pathd = '\\Efi-11'
+    paths = 'C:\\Users\\'
+    pathe = '\\Efi-11\\save.json'
+    pathd = '\\Efi-11'
 elif OS == 'Linux':
-	paths = '/home/'
-	pathe = '/Efi-11/save.json'
-	pathd = '/Efi-11/'
+    paths = '/home/'
+    pathe = '/Efi-11/save.json'
+    pathd = '/Efi-11/'
 elif OS == 'Darwin':
-	paths = '/Users/'
-	pathe = '/Efi-11/save.json'
-	pathd = '/Efi-11/'
+    paths = '/Users/'
+    pathe = '/Efi-11/save.json'
+    pathd = '/Efi-11/'
 pathtf = Path("%s%s%s" % (paths, pathm, pathe))
 pathtd = ("%s%s%s" % (paths, pathm, pathd))
 if not os.path.exists(pathtd):
@@ -61,15 +61,15 @@ hatfd = random.choice(hatf)
 print("%s" % hellod)
 sleep(0.8)
 if rtimes == 1:
-	print("%s" % dkd)
-	sleep(1)
-	print("%s" % wiynd)
-	sleep(0.5)
-	print("Be sure to type your name, your whole name, and nothing but your name")
-	name = input('')
-	print("OK then, %s" % name)
-        writee()
-        print("Please restart this script...")
-        sleep(1000000000000)
+    print("%s" % dkd)
+    sleep(1)
+    print("%s" % wiynd)
+    sleep(0.5)
+    print("Be sure to type your name, your whole name, and nothing but your name")
+    name = input('')
+    print("OK then, %s" % name)
+    writee()
+    print("Please restart this script...")
+    sleep(1000000000000)
 print("%s, %s?" % (hatfd, name))
 isFeeling = input('')
