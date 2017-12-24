@@ -1,9 +1,10 @@
-from time import strftime, sleep
-from getpass import getuser
+from time import strftime, sleep #For waiting and getting localtime
+from getpass import getuser #for determining where files go
 from platform import system
-from pathlib import Path
-import os, itertools, json, sys, random
-debug = 1
+from pathlib import Path #to turn strings to paths
+import os, itertools, json, sys, random #save system modules
+from tkinter import * #gui
+debug = True #in case of problems
 new = False
 pathm = getuser()
 OS = system()
@@ -20,56 +21,63 @@ elif OS == 'Darwin':
     pathe = '/Efi-11/save.json'
     pathd = '/Efi-11/'
 pathtf = Path("%s%s%s" % (paths, pathm, pathe))
+if debug == True:
+        print('File save.json should be located at', pathtf)
 pathtd = ("%s%s%s" % (paths, pathm, pathd))
 if not os.path.exists(pathtd):
         os.makedirs(pathtd)
-        new = 1
+        new = True
+        if debug == True:
+                print('Created folder Efi-11 at', pathtd)
 if not pathtf.is_file():
         f = open(pathtf,'w')
         f.write('{"rtimes": 0}')
         f.close()
-
+        new = True
+        if debug == True:
+                print('Created save.json in folder', pathtd)
+if debug == True and new == False:
+        print('Reading save.json at', pathtf)
 save = open(pathtf, 'r')
 initj = save.read()
 save.close()
+if debug == True:
+        print('Converting JSON data to python dictionary')
 initd = json.loads(initj)
+if debug ==True:
+        print('Initilizing variables')
 locals().update(initd)
 rtimes = rtimes + 1
+tk = Tk()
+win = Label(tk)
+win.pack()
+
+tk.update()
+def wprint(t):
+        win.config(text=str(t))
+        if debug == True:
+                print('Printing', t, 'to tk')
+        tk.update()
 def writee():
         d = {'rtimes':rtimes, 'name':name, 'isFeeling':isFeeling}
         dtop = json.dumps(d)
         f = open(pathtf, 'w')
         f.write(dtop)
         f.close()
-t = 0
 sleep(1.5)
-print('Loading Efi-11 ©')
-while not t == 101:
-        print("%d%%" % t)
-        sleep(0.1)
-        t = t + 1
-print('Loaded')
-hello = ['Hello...', 'Hi.', 'Hello there!', 'Hello!']
-dk = ['Who are you?, I have no idea', '''I... don't know you''', '''I don't know you''', '''It seems that I do not know you''']
-wiyn = ['What is your name?', 'Can you tell me your name?', 'Could you tell me your name?'] 
-hatf = ['How are you feeling today', 'How are you', 'How you feelin today']
+wprint('Loading Efi-11')
+tk.update()
+sleep(1.5)
+wprint('Loaded')
 sleep(1)
-dkd = random.choice(dk)
-hellod = random.choice(hello)
-wiynd = random.choice(wiyn)
-hatfd = random.choice(hatf)
-print("%s" % hellod)
-sleep(0.8)
+wprint('Hello!')
+sleep(1)
 if rtimes == 1:
-    print("%s" % dkd)
-    sleep(1)
-    print("%s" % wiynd)
-    sleep(0.5)
-    print("Be sure to type your name, your whole name, and nothing but your name")
-    name = input('')
-    print("OK then, %s" % name)
-    writee()
-    print("Please restart this script...")
-    sleep(1000000000000)
-print("%s, %s?" % (hatfd, name))
+    wprint('Let me introduce myself')
+    sleep(2.08)
+    wprint('I am Efi-11, a sort of smart AI (artafical intellegence)')
+    sleep(4.09)
+    wprint('What is your name?')
+    sleep(1.21)
+wprint('How are you feeling %s' % name)
 isFeeling = input('')
